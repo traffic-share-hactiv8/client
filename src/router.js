@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import About from './views/About.vue'
 import cRegister from '@/components/com-register.vue'
 import cLogin from '@/components/com-login.vue'
 
@@ -11,23 +9,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About
+      name: 'login',
+      component: cLogin
     },
     {
       path: '/register',
       name: 'register',
       component: cRegister
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: cLogin
     }
   ]
 })
