@@ -11,6 +11,11 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat>
         </v-btn>
+        <router-link to="/upload-image">
+          <v-btn color="red" class="warning elevation-9" v-if="statusLogout">
+            upload image
+          </v-btn>
+        </router-link>
         <router-link to="/">
           <v-btn color="white" class="warning elevation-9" @click="logout" v-if="statusLogout">
             sign out
@@ -44,6 +49,9 @@ export default {
   },
 
   methods: {
+    upload: function (){
+
+    },
     logout: function () {
       localStorage.removeItem('token')
       this.$store.dispatch('changeStLogout')
