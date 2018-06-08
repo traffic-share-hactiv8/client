@@ -31,7 +31,7 @@
     </v-container>
     {{profileTimeline}}
   </v-card>
-</template> 
+</template>
 
 <script>
   import { mapState } from 'vuex'
@@ -73,14 +73,11 @@
 
       //   return Math.floor(Math.random() * (max - min + 1)) + min
       // },
-<<<<<<< 28754ec323344225ab0a87adc834f4d9754d9e12
      
     },
     mounted () {
       this.$store.dispatch('getProfileTimeline')
-=======
 
->>>>>>> add upload
     }
   }
 </script>
