@@ -26,7 +26,7 @@
                   <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstorage.googleapis.com%2Fhappygram%2Fknight-gundam2.jpg&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                     <i class="fab fa-facebook-f"></i>
                   </a>
-              </div> 
+              </div>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -34,7 +34,7 @@
     <!-- {{profileTimeline.data.timelines}} -->
     </v-container>
   </v-card>
-</template> 
+</template>
 
 <script>
   import { mapState } from 'vuex'
@@ -59,7 +59,6 @@
     },
     mounted () {
       this.$store.dispatch('getProfileTimeline')
-      // res.send('adsfadfasd')
     }
   }
 </script>
