@@ -8,11 +8,7 @@ const $http = 'http://localhost:3000/'
 
 export default new Vuex.Store({
   state: {
-    profileTimeline: [
-      {
-        test: 'ahdahfdahfahdfhadfaf'
-      }
-    ],
+    profileTimeline: [],
     statusLogin: true,
     statusLogout: false
   },
@@ -49,14 +45,15 @@ export default new Vuex.Store({
     getProfileTimeline: function ({commit}) {
       let url = $http + 'timelines/currentUser'
       axios
-        .get(url, {
-          headers: {
-            Authorization: localStorage.getItem('token')
-          }
-        })
-        .then(response => {
-          let timelines = response.timelines
-          commit('getProfileTimeline', timelines)
+      .get(url, {
+        headers: {
+          Authorization: localStorage.getItem('token')
+        }
+      })
+      .then(response => {
+        // let timelines = response
+        // console.log('>>>>>>>>>>>>>>>>>>', timelines)
+          commit('getProfileTimeline', response)
         })
         .catch(error => {
           console.log(error)
