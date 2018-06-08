@@ -15,15 +15,15 @@
             <!-- <v-card-media :src="`https://picsum.photos/200/300?image=${getImage()}`" height="300px"></v-card-media> -->
             <v-card-media :src="image.imgUrl"  height="300px"></v-card-media>
             <v-card-actions class="white justify-center">
-              <div  class="fb-share-button" 
-                    data-href="https://storage.googleapis.com/happygram/knight-gundam2.jpg" 
-                    data-layout="button_count" 
-                    data-size="small" 
+              <div  class="fb-share-button"
+                    data-href="https://storage.googleapis.com/happygram/knight-gundam2.jpg"
+                    data-layout="button_count"
+                    data-size="small"
                     data-mobile-iframe="true">
                   <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fstorage.googleapis.com%2Fhappygram%2Fknight-gundam2.jpg&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
                     <i class="fab fa-facebook-f"></i>
                   </a>
-              </div> 
+              </div>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -73,10 +73,14 @@
 
       //   return Math.floor(Math.random() * (max - min + 1)) + min
       // },
+<<<<<<< 28754ec323344225ab0a87adc834f4d9754d9e12
      
     },
     mounted () {
       this.$store.dispatch('getProfileTimeline')
+=======
+
+>>>>>>> add upload
     }
   }
 </script>
