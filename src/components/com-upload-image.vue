@@ -27,7 +27,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">
           <router-link to="/home">
-            Cancle
+            Cancel
           </router-link>
           </button>
 
@@ -37,28 +37,47 @@
 </template>
 
 <script>
+import swal from 'sweetalert2'
+import axios from 'axios'
 export default {
-  name: 'home',
+  name: "home",
   data() {
     return {
-      location: '',
-      description: '',
-      file: ''
-    }
+      location: "",
+      description: "",
+      file: ""
+    };
   },
   methods: {
     onHandlerFile() {
-      this.file = this.$refs.file.files[0]
+      this.file = this.$refs.file.files[0];
     },
     uploadImage() {
-      let formData = new FormData()
-      formData.append('location', this.location)
-      formData.append('description', this.description)
-      formData.append('file', this.file)
-      this.$store.dispatch('uploadImage', formData)
+      // console.log(this.file)
+      let formData = new FormData();
+      formData.append("location", this.location);
+      formData.append("description", this.description);
+      formData.append("image", this.file);
+      axios
+        .post("http://localhost:3000/timelines", formData, {
+          'Content-Type': 'multipart/form-data',
+          headers: {
+            authorization: localStorage.getItem("token")
+          }
+        })
+        .then(function(response) {
+          swal("Good job!", "success upload photo", "success");
+        })
+        .catch(function(err) {
+          swal({
+            type: "error",
+            title: "Oops...",
+            text: err
+          });
+        });
     }
   }
-}
+};
 </script>
 
 <style lang="css">

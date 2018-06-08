@@ -17,7 +17,7 @@
           </v-btn>
         </router-link>
         <router-link to="/">
-          <v-btn color="white" class="warning elevation-9" @click="logout" v-if="statusLogout">
+          <v-btn color="yellow" class="warning elevation-9" @click="logout" v-if="statusLogout">
             sign out
           </v-btn>
         </router-link>
