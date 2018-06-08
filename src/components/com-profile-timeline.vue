@@ -29,10 +29,13 @@
         </v-flex>
       </v-layout>
     </v-container>
+    {{profileTimeline}}
   </v-card>
-</template>
+</template> 
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
     data: () => ({
       images: [
@@ -57,6 +60,12 @@
       ]
     }),
 
+    computed: {
+      ...mapState([
+        'profileTimeline'
+      ])
+    },
+
     methods: {
       // getImage () {
       //   const min = 550
@@ -65,6 +74,9 @@
       //   return Math.floor(Math.random() * (max - min + 1)) + min
       // },
      
+    },
+    mounted () {
+      this.$store.dispatch('getProfileTimeline')
     }
   }
 </script>

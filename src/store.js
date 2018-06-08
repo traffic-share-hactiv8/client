@@ -1,10 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
+const $http = 'http://localhost:3000/'
+
 export default new Vuex.Store({
   state: {
+    profileTimeline: [
+      {
+        test: 'ahdahfdahfahdfhadfaf'
+      }
+    ],
     statusLogin: true,
     statusLogout: false
   },
@@ -16,6 +24,9 @@ export default new Vuex.Store({
     changeStLogout: function (state, payload) {
       state.statusLogin = payload.login
       state.statusLogout = payload.logout
+    },
+    getProfileTimeline: function (state, payload) {
+      state.profileTimeline = payload
     }
   },
   actions: {
@@ -33,6 +44,23 @@ export default new Vuex.Store({
         logout: false
       }
       commit('changeStLogout', objStatus)
+    },
+
+    getProfileTimeline: function ({commit}) {
+      let url = $http + 'timelines/currentUser'
+      axios
+        .get(url, {
+          headers: {
+            Authorization: localStorage.getItem('token')
+          }
+        })
+        .then(response => {
+          let timelines = response.timelines
+          commit('getProfileTimeline', timelines)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 })

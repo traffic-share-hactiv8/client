@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container> 
     <v-form>
-      <v-text-field v-model="name" label="Name" required ></v-text-field>
+      <v-text-field v-model="username" label="username" required ></v-text-field>
       <v-text-field v-model="email" label="E-mail" required ></v-text-field>
       <v-text-field v-model="password" label="Password" required type="password"></v-text-field>
     </v-form>
@@ -15,13 +15,13 @@ import swal from 'sweetalert'
 import axios from 'axios'
 // import cLoginMedsos from './com-loginMedsos.vue'
 
-// const vhttp = 'http://localhost:3000/'
-const vhttp = 'https://todoserver.yasirjs.com/'
+const vhttp = 'http://localhost:3000/'
+// const vhttp = 'https://todoserver.yasirjs.com/'
 
 export default {
   data () {
     return {
-      name: '',
+      username: '',
       email: '',
       password: ''
     }
@@ -50,11 +50,11 @@ export default {
           text: 'Email format is Wrong'
         })
         return false
-      } else if (this.name === '') {
+      } else if (this.username === '') {
         swal({
           icon: 'error',
           title: 'Oops',
-          text: 'Name must be input'
+          text: 'username must be input'
         })
         return false
       } else if (this.password === '') {
@@ -85,11 +85,11 @@ export default {
 
     signup: function () {
       let cek = this.valSignup()
-      let url = `${vhttp}users/signup`
+      let url = `${vhttp}register`
 
       if (cek) {
         let newUser = {
-          name: this.name,
+          username: this.username,
           email: this.email,
           password: this.password
         }
@@ -97,7 +97,7 @@ export default {
           .post(url, newUser)
           .then(response => {
             swal('Sign Up', 'you sign up successfully, please log in', 'success')
-            this.$router.push('/login')
+            this.$router.push('/')
           })
           .catch(error => {
             console.error(error)
