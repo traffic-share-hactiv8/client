@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-form>
-      <v-text-field v-model="email" label="E-mail" required ></v-text-field>
+      <v-text-field v-model="username" label="Username" required ></v-text-field>
       <v-text-field v-model="password" label="Password" required type="password"></v-text-field>
     </v-form>
     <button type="button" class="btn btn-success elevation-9" @click="login">sign in</button>
@@ -14,13 +14,13 @@ import swal from 'sweetalert'
 import axios from 'axios'
 // import cLoginMedsos from './com-loginMedsos.vue'
 
-// const vhttp = 'http://localhost:3000/'
-const vhttp = 'https://todoserver.yasirjs.com/'
+const vhttp = 'http://localhost:3000/'
+// const vhttp = 'https://todoserver.yasirjs.com/'
 
 export default {
   data () {
     return {
-      email: null,
+      username: null,
       password: null
     }
   },
@@ -31,22 +31,22 @@ export default {
 
   methods: {
     valLogin: function () {
-      let regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      let cekEmail = regEx.test(String(this.email).toLowerCase())
-      if (this.email === '') {
+      // let regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      // let cekEmail = regEx.test(String(this.email).toLowerCase())
+      if (this.username === '') {
         swal({
           icon: 'error',
           title: 'Oops',
           text: 'Email must be filled'
         })
         return false
-      } else if (!cekEmail) {
-        swal({
-          icon: 'error',
-          title: 'Oops',
-          text: 'Email format is Wrong'
-        })
-        return false
+      // } else if (!cekEmail) {
+      //   swal({
+      //     icon: 'error',
+      //     title: 'Oops',
+      //     text: 'Email format is Wrong'
+      //   })
+      //   return false
       } else if (this.password === '') {
         swal({
           icon: 'error',
@@ -60,11 +60,11 @@ export default {
     },
     login () {
       let cek = this.valLogin()
-      let url = `${vhttp}users/signin`
+      let url = `${vhttp}login`
       if (cek) {
         axios
           .post(url, {
-            email: this.email,
+            username: this.username,
             password: this.password
           })
           .then(response => {
@@ -74,7 +74,7 @@ export default {
               swal('Sign In', 'Sign Ip successfully', 'success')
 
               this.$store.dispatch('changeStLogin')
-              this.$router.push('todo')
+              this.$router.push('/home')
             }
           })
           .catch(error => {
